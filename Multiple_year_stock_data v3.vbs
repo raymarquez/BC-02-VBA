@@ -25,17 +25,16 @@ Sub MyStockAnalyzer():
     Dim yearIn As String
     Dim yearToAnalyze As String
     Dim endRow As Double
-    Dim lastRow As Long
     Dim tick As Double
 'config         -------------------------------------------------------------
     tickerHdr = "< Ticker >"
     volumeHdr = "< Total Stock Volume >"
     tickerBefore = "firstpass"
     yearToAnalyze = "2015"
-    endRow = 760192
+    'endRow = 760192
     'lRow = Cells(.Rows.Count).End(xlUp).Row
     'lastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row   '<== uncomment me please
-    MsgBox ("last row is " & lastRow)
+    endRow = Cells(Rows.Count, "A").End(xlUp).Row
     tick = 0
 'main loop      -------------------------------------------------------------
     For i = 2 To endRow
@@ -44,7 +43,7 @@ Sub MyStockAnalyzer():
         volumeIn = Cells(i, 7)
         yearIn = Left((Cells(i, 2).Value), 4)
 'if year out of scope
-        If (yearIn <> yearToAnalyze) Then
+        If (yearIn <> yearToAnalyze) Then '-> Keep this line. It validates year in scope, else do next i
         'ElseIf (Left(tickerIn, 1) <> "A") Then
         ElseIf (tickerBefore = "firstpass") Then
 'if first pass
@@ -69,10 +68,6 @@ Sub MyStockAnalyzer():
             volumeOut(tick) = volumeSofar
             tickerOut(tick) = tickerBefore
         End If
-        'MsgBox ("01 index i / tick are : " & i & " / " & tick)
-        'MsgBox ("02 input tkr / vol : " & tickerIn & " / " & volumeIn)
-        'MsgBox ("03 saved tkr / vol : " & tickerBefore & " / " & volumeSofar)
-        
     Next i
 'output loop    -------------------------------------------------------------
     Range("I1") = tickerHdr
