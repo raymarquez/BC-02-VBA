@@ -12,6 +12,8 @@ Attribute VB_Name = "Module1"
 '----------------------------------------------------------------------------------
 'Versions:
 '06.26.2019 - ray - initial version, the "easy" one
+'06.27.2019 - ray - moderate version
+'06.28.2019 - ray - hard version
 '==================================================================================
 
 Sub MyStockAnalyzer():
@@ -167,13 +169,6 @@ Sub MyStockAnalyzer():
     Cells(2, 16) = Format(Cells(2, 16), "percent")
     Cells(3, 16) = Format(Cells(3, 16), "percent")
     Cells(4, 16).NumberFormat = "0"
-    
-    'Cells(2, 15) = bestTick(0)
-    'Cells(2, 16) = bestValue(0)
-    'Cells(3, 15) = bestTick(1)
-    'Cells(3, 16) = bestValue(1)
-    'Cells(4, 15) = bestTick(2)
-    'Cells(4, 16) = bestValue(2)
     
     For k = 2 To 4
         Cells(k, 15) = bestTick(k - 2)
